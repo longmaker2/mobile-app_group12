@@ -16,13 +16,15 @@ To get started with our projects, follow these steps:
 
 1. Clone the repository:
 
-   ```git clone https://github.com/longmaker2/mobile-app_group12.git
+   ```
+   git clone https://github.com/longmaker2/mobile-app_group12.git
 
    ```
 
 2. Navigate to the project directory:
 
-   ```cd mobile-app_group12
+   ```
+   cd mobile-app_group12
 
    ```
 
