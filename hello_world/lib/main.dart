@@ -11,8 +11,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title:const Center(
-            child: Text('Hi, 👍',
+          title: const Center(
+            child: Text(
+              'Hi, 👍',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
@@ -29,21 +30,18 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
             size: 30.0,
           ),
-
         ),
         body: const Center(
-          child: Text('Hello World!',
+          child: Text(
+            'Hello World!',
             style: TextStyle(
               color: Colors.white,
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-
         ),
-
         backgroundColor: const Color.fromARGB(255, 49, 68, 77),
-
       ),
     );
   }
