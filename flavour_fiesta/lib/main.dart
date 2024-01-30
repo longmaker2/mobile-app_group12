@@ -1,7 +1,5 @@
-// main.dart
-
 import 'package:flutter/material.dart';
-import 'screens/onboarding_screens/landing_screen.dart'; // Adjust the import based on your project structure
+import 'screens/onboarding_screens/landing_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FlavourFiesta',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: LandingPage(),
     );
