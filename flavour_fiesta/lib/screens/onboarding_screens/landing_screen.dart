@@ -23,10 +23,11 @@ class LandingPage extends StatelessWidget {
               Text(
                 'Finger Licking Good!',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 44,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
+                textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -34,7 +35,10 @@ class LandingPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
                   onPrimary: Colors.black,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
                 child: Text('Get Started'),
               ),

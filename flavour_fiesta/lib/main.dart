@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/onboarding_screens/landing_screen.dart';
+import 'screens/auth_screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: LandingPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LandingPage(),
+        '/login': (context) => LoginPage(),
+      },
     );
   }
 }
