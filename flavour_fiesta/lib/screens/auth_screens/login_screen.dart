@@ -124,7 +124,7 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 45),
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
                     child: GestureDetector(
                       onTap: () {},
                       child: Text(
@@ -138,7 +138,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 45),
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
                     child: GestureDetector(
                       onTap: () {},
                       child: Text(
