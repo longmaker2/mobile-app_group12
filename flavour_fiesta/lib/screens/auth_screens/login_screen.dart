@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 70),
               child: Text(
                 'We are here to make sure you get the best meal cooked by our expert chefs.',
                 style: TextStyle(
@@ -47,7 +47,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 32),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 26),
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Email',
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 26),
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -99,7 +99,7 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  padding: const EdgeInsets.symmetric(horizontal: 45),
                   child: GestureDetector(
                     onTap: () {},
                     child: Text(
@@ -113,7 +113,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 Spacer(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  padding: const EdgeInsets.symmetric(horizontal: 45),
                   child: GestureDetector(
                     onTap: () {},
                     child: Text(

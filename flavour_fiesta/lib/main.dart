@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => LandingPage(),
-        '/login': (context) => LoginPage(),
+        // '/': (context) => LandingPage(),
+        '/': (context) => LoginPage(),
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
