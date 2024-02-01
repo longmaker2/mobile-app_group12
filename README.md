@@ -8,7 +8,8 @@ This repository serves as a collaborative space for our team to work on various 
 
 ## Project Structure
 
--
+- Link to the video recording: https://drive.google.com/file/d/1GKUdUMJSGkZdzB9SBCKO6qSYtkcqThUK/view?usp=sharing
+- Link to the GitHub repository: https://github.com/longmaker2/mobile-app_group12
 
 ## Getting Started
 
