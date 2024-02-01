@@ -41,9 +41,7 @@ class MyApp extends StatelessWidget {
           ),
 
         ),
-
         backgroundColor: const Color.fromARGB(255, 49, 68, 77),
-
       ),
     );
   }
