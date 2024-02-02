@@ -1,3 +1,4 @@
+import 'package:flavour_fiesta/screens/onboarding_screens/signin_register_screen.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
@@ -20,6 +21,7 @@ class LandingPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('images/rice.png'),
               Text(
                 'Finger Licking Good!',
                 style: TextStyle(
@@ -31,7 +33,13 @@ class LandingPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SigninScreen()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
                   onPrimary: Colors.black,
