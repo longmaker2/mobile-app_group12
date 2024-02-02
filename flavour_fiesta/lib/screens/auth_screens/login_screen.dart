@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'register.dart';
+
+
+
+
+
+
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
       body: Stack(
         children: [
           Container(
@@ -42,6 +44,7 @@ class LoginPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('images/login.png'),
               Text(
                 'Welcome Back',
                 style: TextStyle(
@@ -68,15 +71,13 @@ class LoginPage extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
+                    border: null,
                     filled: true,
                     fillColor: Color(0xFFF3F3F3),
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
+
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
                       borderSide: BorderSide(
                         color: Colors.red,
                       ),
@@ -96,14 +97,12 @@ class LoginPage extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: 'Password',
                     filled: true,
+                    border: null,
                     fillColor: Color(0xFFF3F3F3),
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
+
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
                       borderSide: BorderSide(
                         color: Colors.red,
                       ),
@@ -126,7 +125,15 @@ class LoginPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 35),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // Handle the sign up action
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Registration(),
+                          )
+                        );
+                      },
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
