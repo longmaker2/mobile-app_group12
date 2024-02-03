@@ -9,7 +9,7 @@ class Registration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration:const  BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -45,8 +45,8 @@ class Registration extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -69,8 +69,8 @@ class Registration extends StatelessWidget {
                 ),
               ),
             const SizedBox(height: 10),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Name',
@@ -93,8 +93,8 @@ class Registration extends StatelessWidget {
                 ),
               ),
             const SizedBox(height: 10),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -137,7 +137,7 @@ class Registration extends StatelessWidget {
                           )
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Already have an account? Sign in.',
                         style: TextStyle(
                           fontSize: 16,
@@ -152,14 +152,14 @@ class Registration extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.red,
-                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(

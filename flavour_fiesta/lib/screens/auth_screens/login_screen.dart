@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'register.dart';
 
 
-
-
-
-
-
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -26,17 +23,17 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             left: 50,
             top: 100,
             child: Ellipse(size: 20),
           ),
-          Positioned(
+          const Positioned(
             right: 80,
             top: 180,
             child: Ellipse(size: 15),
           ),
-          Positioned(
+          const Positioned(
             left: 150,
             bottom: 80,
             child: Ellipse(size: 25),
@@ -45,7 +42,7 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('images/login.png'),
-              Text(
+              const Text(
                 'Welcome Back',
                 style: TextStyle(
                   fontSize: 28,
@@ -53,9 +50,9 @@ class LoginPage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
+              const SizedBox(height: 16),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 70),
                 child: Text(
                   'We are here to make sure you get the best meal cooked by our expert chefs.',
                   style: TextStyle(
@@ -65,9 +62,9 @@ class LoginPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
+             const SizedBox(height: 32),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -89,9 +86,9 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
+              const SizedBox(height: 16),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -118,7 +115,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -130,11 +127,11 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Registration(),
+                            builder: (context) =>const Registration(),
                           )
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign Up',
                         style: TextStyle(
                           fontSize: 16,
@@ -143,12 +140,12 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 35),
                     child: GestureDetector(
                       onTap: () {},
-                      child: Text(
+                      child: const Text(
                         'Forgot Password?',
                         style: TextStyle(
                           fontSize: 16,
@@ -159,18 +156,18 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.red,
-                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
@@ -193,7 +190,7 @@ class LoginPage extends StatelessWidget {
 class Ellipse extends StatelessWidget {
   final double size;
 
-  Ellipse({required this.size});
+  const Ellipse({super.key, required this.size});
 
   @override
   Widget build(BuildContext context) {
