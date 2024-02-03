@@ -1,5 +1,7 @@
 import 'package:flavour_fiesta/components/food_categories.dart';
+import 'package:flavour_fiesta/components/food_item.dart';
 import 'package:flavour_fiesta/components/search_bar.dart';
+import 'package:flavour_fiesta/models/food.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -111,75 +113,127 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      width: double.infinity,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: const Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 20.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Today\'s Offer',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Free Soda',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'on all orders above RWF',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    '7000 ',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ],
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    width: double.infinity,
+                    height: 130,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: const Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Today\'s Offer',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Expanded(
-                                child: Image(
-                              image: AssetImage('images/rice.png'),
-                            )),
-                          ]))
+                              Padding(
+                                padding: EdgeInsets.only(left: 40.0),
+                                child: Text(
+                                  'Free Soda',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: 1.0,
+                                ),
+                                child: Text(
+                                  'on all orders above RWF',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 80.0),
+                                child: Text(
+                                  '15,000 ',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        Expanded(
+                          child: Image(
+                            image: AssetImage('images/rice.png'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
 
             // popular
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 25.0,
+                top: 20.0,
+                right: 25.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Popular',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
 
-            //
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        FoodProduct(
+                          name: 'Full chicken',
+                          imagePath: 'images/rice.png',
+                          price: 10000,
+                        ),
+                        FoodProduct(
+                          name: 'Full chicken',
+                          imagePath: 'images/rice.png',
+                          price: 10000,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
