@@ -10,19 +10,19 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFFF191C),
-                  Color(0xFFFC7B8A),
-                ],
-                stops: [0.0065, 1.0718],
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFFFF191C),
+                    Color(0xFFFC7B8A),
+                  ],
+                  stops: [0.0065, 1.0718],
+                ),
               ),
             ),
-          ),
           const Positioned(
             left: 50,
             top: 100,

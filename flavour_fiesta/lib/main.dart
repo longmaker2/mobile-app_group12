@@ -1,3 +1,4 @@
+import 'package:flavour_fiesta/screens/app_screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/onboarding_screens/landing_screen.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const LandingPage(),
+      home: const HomeScreen(),
     );
   }
 }
