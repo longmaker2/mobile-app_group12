@@ -19,6 +19,7 @@ class FoodProduct extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(
         left: 25.0,
+        right: 50.0,
       ),
       width: 180.0,
       decoration: BoxDecoration(
@@ -41,9 +42,9 @@ class FoodProduct extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.only(left: 25.0, right: 2.0),
+            padding: const EdgeInsets.only(left: 25.0, right: 4.0),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +72,7 @@ class FoodProduct extends StatelessWidget {
                 GestureDetector(
                   onTap: (){},
                   child: Container(
-                    padding: const EdgeInsets.all(1.0),
+                    padding: const EdgeInsets.all(0.5),
                     decoration:  BoxDecoration(
                       color: Colors.blue[900],
                       borderRadius: const BorderRadius.only(

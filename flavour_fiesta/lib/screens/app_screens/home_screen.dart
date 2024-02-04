@@ -1,7 +1,6 @@
 import 'package:flavour_fiesta/components/food_categories.dart';
 import 'package:flavour_fiesta/components/food_item.dart';
 import 'package:flavour_fiesta/components/search_bar.dart';
-import 'package:flavour_fiesta/models/food.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         title: const Padding(
           padding: EdgeInsets.only(left: 30.0),
           child: Text(
@@ -193,20 +192,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // popular
             const Padding(
-              padding: EdgeInsets.only(
-                left: 25.0,
-                top: 20.0,
-                right: 25.0,
-              ),
+              padding: EdgeInsets.only(top: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Popular',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-
+                  Padding(
+                    padding: EdgeInsets.only(left: 25.0),
+                    child: Text(
+                      'Popular',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   SizedBox(
