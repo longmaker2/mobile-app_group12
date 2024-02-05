@@ -40,7 +40,6 @@ class _HomeEntryState extends State<HomeEntry> {
           ],
         ),
         child: SafeArea(
-
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 8),
             child: GNav(

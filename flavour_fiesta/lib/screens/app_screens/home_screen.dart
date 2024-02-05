@@ -20,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       appBar: AppBar(
         leading: const Icon(
           Icons.menu,
@@ -38,7 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-
         centerTitle: false,
         elevation: 0,
         actions: const [
@@ -65,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
-
                 children: [
                   FoodCategory(
                       imagePath: 'images/rice.png',
