@@ -6,8 +6,6 @@ class FoodCategory extends StatelessWidget {
   final String name;
   final Function()? onTap;
 
-
-
   const FoodCategory({
     super.key,
     required this.imagePath,
@@ -25,19 +23,22 @@ class FoodCategory extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Card(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              color: Colors.red,
-              elevation: 5,
-              child: Container(
-                margin: const EdgeInsets.all(10.0),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                  height: 100,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                color: Colors.grey.shade300,
+                elevation: 5,
+                child: Container(
+                  margin: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    imagePath,
+                    height: 50.0,
+                    width: 50.0,
+                  ),
                 ),
               ),
             ),

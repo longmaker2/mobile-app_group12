@@ -1,3 +1,4 @@
+import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 
@@ -158,7 +159,12 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeEntry()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.red,
