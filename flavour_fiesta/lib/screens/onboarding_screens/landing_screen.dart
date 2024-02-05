@@ -2,11 +2,14 @@ import 'package:flavour_fiesta/screens/onboarding_screens/signin_register_screen
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -22,7 +25,7 @@ class LandingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('images/rice.png'),
-              Text(
+              const Text(
                 'Finger Licking Good!',
                 style: TextStyle(
                   fontSize: 44,
@@ -31,7 +34,7 @@ class LandingPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -40,15 +43,15 @@ class LandingPage extends StatelessWidget {
                         builder: (context) => const SigninScreen()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                               style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Text('Get Started'),
+                child: const Text('Get Started'),
               ),
             ],
           ),

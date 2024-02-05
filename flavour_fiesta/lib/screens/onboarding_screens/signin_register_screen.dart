@@ -73,7 +73,7 @@ class SigninScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Registration(),
+                            builder: (context) =>const Registration(),
                           ),
                         );
                       },
