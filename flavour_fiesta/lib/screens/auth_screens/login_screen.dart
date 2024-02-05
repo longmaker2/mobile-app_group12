@@ -2,7 +2,6 @@ import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 
-
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -11,19 +10,19 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFFF191C),
-                    Color(0xFFFC7B8A),
-                  ],
-                  stops: [0.0065, 1.0718],
-                ),
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFFFF191C),
+                  Color(0xFFFC7B8A),
+                ],
+                stops: [0.0065, 1.0718],
               ),
             ),
+          ),
           const Positioned(
             left: 50,
             top: 100,
@@ -63,7 +62,7 @@ class LoginPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-             const SizedBox(height: 32),
+              const SizedBox(height: 32),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
@@ -74,7 +73,6 @@ class LoginPage extends StatelessWidget {
                     fillColor: Color(0xFFF3F3F3),
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.red,
@@ -99,7 +97,6 @@ class LoginPage extends StatelessWidget {
                     fillColor: Color(0xFFF3F3F3),
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.red,
@@ -126,11 +123,10 @@ class LoginPage extends StatelessWidget {
                       onTap: () {
                         // Handle the sign up action
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>const Registration(),
-                          )
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Registration(),
+                            ));
                       },
                       child: const Text(
                         'Sign Up',
@@ -168,7 +164,8 @@ class LoginPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
