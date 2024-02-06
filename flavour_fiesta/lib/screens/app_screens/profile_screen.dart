@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -15,20 +16,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
       theme: isDarkModeEnabled ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(60),
           child: AppBar(
             title: Align(
               alignment: Alignment.center,
               child: Row(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     color: isDarkModeEnabled ? Colors.white : Colors.black,
                   ),
-                  SizedBox(width: 75),
+                  const SizedBox(width: 75),
                   Expanded(
                     child: Text(
                       'Profile',
@@ -61,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             radius: 50,
                             backgroundImage:
                                 AssetImage('images/profile_picture.jpg'),
@@ -72,11 +73,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Stack(
                               children: [
                                 Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),
-                                  padding: EdgeInsets.all(2),
+                                  padding:const EdgeInsets.all(2),
                                   child: Icon(
                                     Icons.edit,
                                     color: isDarkModeEnabled
@@ -90,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
 
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
                       // Name and Email
                       Text(
@@ -116,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
 
-                SizedBox(height: 32),
+               const SizedBox(height: 32),
 
                 // Menu Items
                 buildMenuItem('Home', Icons.home, Icons.chevron_right),
@@ -126,52 +127,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 buildMenuItem('Settings', Icons.settings, Icons.chevron_right),
                 buildMenuItem('Help Center', Icons.help, Icons.chevron_right),
 
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
 
                 // Logout Button
                 ElevatedButton.icon(
                   onPressed: () {
                     // Handle logout
                   },
-                  icon: Icon(
+                  icon:const Icon(
                     Icons.logout,
                     color: Colors.white, // Icon color
                   ),
-                  label: Text(
+                  label: const Text(
                     'Logout',
                     style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red, // Button background color
+                    foregroundColor: Colors.red, // Button background color
                   ),
                 ),
 
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-                // Icons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.home,
-                        color: isDarkModeEnabled
-                            ? Colors.white
-                            : Colors.black), // Set color to black in light mode
-                    Icon(Icons.search,
-                        color: isDarkModeEnabled
-                            ? Colors.white
-                            : Colors.black), // Set color to black in light mode
-                    Icon(Icons.shopping_cart,
-                        color: isDarkModeEnabled
-                            ? Colors.white
-                            : Colors.black), // Set color to black in light mode
-                    Icon(Icons.account_circle,
-                        color: isDarkModeEnabled
-                            ? Colors.white
-                            : Colors.black), // Set color to black in light mode
-                  ],
-                ),
+
               ],
             ),
           ),
@@ -183,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget buildMenuItem(
       String title, IconData leadingIcon, IconData trailingIcon) {
     return ListTile(
-      contentPadding: EdgeInsets.all(0),
+      contentPadding: const EdgeInsets.all(0),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -193,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 leadingIcon,
                 color: isDarkModeEnabled ? Colors.white : Colors.black,
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Text(
                 title,
                 style: TextStyle(

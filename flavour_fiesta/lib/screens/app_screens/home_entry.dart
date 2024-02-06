@@ -1,4 +1,5 @@
 import 'package:flavour_fiesta/screens/app_screens/home_screen.dart';
+import 'package:flavour_fiesta/screens/app_screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -10,15 +11,15 @@ class HomeEntry extends StatefulWidget {
 }
 
 class _HomeEntryState extends State<HomeEntry> {
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    Text(
+  final List<Widget> _widgetOptions = <Widget>[
+    const HomeScreen(),
+    const Text(
       'Index 1: Search',
     ),
-    Text(
+    const Text(
       'Index 2: Profile',
     ),
-    Text("profile")
+    ProfileScreen()
   ];
 
   // starting point of our navbar
