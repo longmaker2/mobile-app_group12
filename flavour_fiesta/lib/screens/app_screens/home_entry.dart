@@ -41,42 +41,44 @@ class _HomeEntryState extends State<HomeEntry> {
           ],
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 8),
-            child: GNav(
-              // rippleColor: Colors.grey[300]!,
-              // hoverColor: Colors.grey[100]!,
-              gap: 0,
-              activeColor: Colors.red.shade500,
-              iconSize: 30,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.transparent,
-              color: Colors.grey[400]!,
-              tabs: const [
-                GButton(
-                  icon: Icons.home,
-                  text: '',
-                ),
-                GButton(
-                  icon: Icons.search,
-                  text: '',
-                ),
-                GButton(
-                  icon: Icons.shopping_cart_checkout_outlined,
-                  text: '',
-                ),
-                GButton(
-                  icon: Icons.person_2_outlined,
-                  text: '',
-                ),
-              ],
-              selectedIndex: _selectedIndex,
-              onTabChange: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
+          child: Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 8),
+              child: GNav(
+                // rippleColor: Colors.grey[300]!,
+                // hoverColor: Colors.grey[100]!,
+                gap: 0,
+                activeColor: Colors.red.shade500,
+                iconSize: 30,
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                duration: const Duration(milliseconds: 400),
+                tabBackgroundColor: Colors.transparent,
+                color: Colors.grey[400]!,
+                tabs: const [
+                  GButton(
+                    icon: Icons.home,
+                    text: '',
+                  ),
+                  GButton(
+                    icon: Icons.search,
+                    text: '',
+                  ),
+                  GButton(
+                    icon: Icons.shopping_cart_checkout_outlined,
+                    text: '',
+                  ),
+                  GButton(
+                    icon: Icons.person_2_outlined,
+                    text: '',
+                  ),
+                ],
+                selectedIndex: _selectedIndex,
+                onTabChange: (index) {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+              ),
             ),
           ),
         ),

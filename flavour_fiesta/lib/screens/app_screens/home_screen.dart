@@ -123,11 +123,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: const Row(
+                    child:  Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -179,14 +179,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20.0,
                         ),
-                        Expanded(
-                          child: Image(
-                            image: AssetImage('images/rice.png'),
+                         Image.asset(
+                           'images/rice.png',
+                           width: 100,
+                           height: 100,
+                           fit: BoxFit.contain,
                           ),
-                        ),
+
+
                       ],
                     ),
                   ),
