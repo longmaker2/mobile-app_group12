@@ -12,7 +12,7 @@ FlavourFiesta is designed to streamline the process of ordering food from local 
 
 ## Getting Started
 
-To get started with our projects, follow these steps:
+To get started with our project, follow these steps:
 
 1. Clone the repository:
 
