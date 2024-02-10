@@ -28,9 +28,7 @@ FlavourFiesta is designed to streamline the process of ordering food from local 
 - [Ruth Biney](r.biney@alustudent.com)
 - [Kayongo Brian](k.brian@alustudent.com)
 
-# flavour_fiesta
-
-A new Flutter project.
+# How to start a new Flutter project.
 
 ## Getting Started
 
