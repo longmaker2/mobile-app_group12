@@ -16,44 +16,47 @@ class _HomeScreenState extends State<HomeScreen> {
     debugPrint(category);
   }
 
+  // get the searched for food
+  void onSearchedFood(String food) {
+    debugPrint(food);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: const Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
-        title: const Padding(
-          padding: EdgeInsets.only(left: 30.0),
-          child: Text(
-            'Menu',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        centerTitle: false,
-        elevation: 0,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 40.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('images/profile.jpeg'),
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(20.0),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // header
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Home',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                  size: 25.0,
+
+                )
+              ]
+            ),
+
             // search bar
-            const SearchField(),
+            SearchField(
+              onSearchedFood: onSearchedFood,
+            ),
+
             const SizedBox(
               height: 16,
             ),
@@ -123,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child:  Row(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -182,14 +185,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(
                           width: 20.0,
                         ),
-                         Image.asset(
-                           'images/rice.png',
-                           width: 100,
-                           height: 100,
-                           fit: BoxFit.contain,
-                          ),
-
-
+                        Image.asset(
+                          'images/rice.png',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.contain,
+                        ),
                       ],
                     ),
                   ),
