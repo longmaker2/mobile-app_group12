@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'register.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -18,16 +19,20 @@ class LoginPage extends StatelessWidget {
                 Color(0xFFFF191C),
                 Color(0xFFFC7B8A),
               ],
-              stops: [0.0065, 1.0718],
             ),
           ),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('images/login.png'),
+                  Image.asset(
+                    'images/login.png',
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  const SizedBox(height: 20),
                   const Text(
                     'Welcome Back',
                     style: TextStyle(
@@ -161,17 +166,17 @@ class LoginPage extends StatelessWidget {
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.login,
-                          color: Colors.red,
+                          Icons.login_outlined,
+                          color: Colors.white,
                         ),
                         SizedBox(width: 8),
                         Text('Login'),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 100.0),
                 ],
               ),
             ],

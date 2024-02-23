@@ -1,3 +1,4 @@
+import 'package:flavour_fiesta/screens/app_screens/cart_screen.dart';
 import 'package:flavour_fiesta/screens/app_screens/home_screen.dart';
 import 'package:flavour_fiesta/screens/app_screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,9 @@ class HomeEntry extends StatefulWidget {
 class _HomeEntryState extends State<HomeEntry> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    const Text(
-      'Index 1: Search',
-    ),
-    const Text(
-      'Index 2: Profile',
-    ),
-    ProfileScreen()
+    const HomeScreen(),
+    const CartScreen(),
+    const ProfileScreen(),
   ];
 
   // starting point of our navbar
@@ -41,44 +38,42 @@ class _HomeEntryState extends State<HomeEntry> {
           ],
         ),
         child: SafeArea(
-          child: Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 8),
-              child: GNav(
-                // rippleColor: Colors.grey[300]!,
-                // hoverColor: Colors.grey[100]!,
-                gap: 0,
-                activeColor: Colors.red.shade500,
-                iconSize: 30,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                duration: const Duration(milliseconds: 400),
-                tabBackgroundColor: Colors.transparent,
-                color: Colors.grey[400]!,
-                tabs: const [
-                  GButton(
-                    icon: Icons.home,
-                    text: '',
-                  ),
-                  GButton(
-                    icon: Icons.search,
-                    text: '',
-                  ),
-                  GButton(
-                    icon: Icons.shopping_cart_checkout_outlined,
-                    text: '',
-                  ),
-                  GButton(
-                    icon: Icons.person_2_outlined,
-                    text: '',
-                  ),
-                ],
-                selectedIndex: _selectedIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-              ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.12, vertical: 8),
+            child: GNav(
+              // rippleColor: Colors.grey[300]!,
+              // hoverColor: Colors.grey[100]!,
+              gap: 0,
+              activeColor: Colors.red.shade500,
+              iconSize: 30,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              duration: const Duration(milliseconds: 400),
+              tabBackgroundColor: Colors.transparent,
+              color: Colors.grey[400]!,
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  text: '',
+                ),
+                GButton(
+                  icon: Icons.search,
+                  text: '',
+                ),
+                GButton(
+                  icon: Icons.shopping_cart_checkout_outlined,
+                  text: '',
+                ),
+                GButton(
+                  icon: Icons.person_2_outlined,
+                  text: '',
+                ),
+              ],
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
             ),
           ),
         ),
