@@ -11,28 +11,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: isDarkModeEnabled
-          ? ThemeData.dark().scaffoldBackgroundColor
-          : Colors.white,
-      appBar: AppBar(
-        leading: null,
-        title: Text(
-          'Profile',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: isDarkModeEnabled ? Colors.white : Colors.black,
-          ),
-          textAlign: TextAlign.left,
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
+
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 38.0, vertical: 16.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: 38.0,
+            vertical: MediaQuery.of(context).size.height * 0.15,
+          ),
+
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
                 child: Column(
@@ -95,7 +83,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 20),
+
 
               // Menu Items
               buildMenuItem('Home', Icons.home, Icons.chevron_right),
@@ -105,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               buildMenuItem('Settings', Icons.settings, Icons.chevron_right),
               buildMenuItem('Help Center', Icons.help, Icons.chevron_right),
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 20),
 
               // Logout Button
               ElevatedButton.icon(
@@ -120,10 +109,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   'Logout',
                   style: TextStyle(
                     color: Colors.white,
+
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.red, // Button background color
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+
+                  ),
                 ),
               ),
 
@@ -131,7 +125,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ),
-      ),
     );
   }
 

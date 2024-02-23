@@ -2,7 +2,6 @@ import 'package:flavour_fiesta/screens/app_screens/cart_screen.dart';
 import 'package:flavour_fiesta/screens/app_screens/home_screen.dart';
 import 'package:flavour_fiesta/screens/app_screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeEntry extends StatefulWidget {
@@ -40,7 +39,7 @@ class _HomeEntryState extends State<HomeEntry> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.2, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.12, vertical: 8),
             child: GNav(
               // rippleColor: Colors.grey[300]!,
               // hoverColor: Colors.grey[100]!,
