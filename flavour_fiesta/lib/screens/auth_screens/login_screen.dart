@@ -190,7 +190,7 @@ class LoginPage extends StatelessWidget {
 class Ellipse extends StatelessWidget {
   final double size;
 
-  const Ellipse({Key? key, required this.size}) : super(key: key);
+  const Ellipse({super.key, required this.size});
 
   @override
   Widget build(BuildContext context) {
