@@ -1,9 +1,112 @@
+import 'package:flavour_fiesta/models/services/authentication.dart';
 import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  // get the auth instance from our services
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+  // get the user password and password
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  // function to handle logins to the applicaiton
+  Future<void> _handleLogin() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+    if (email.isEmpty || password.isEmpty) {
+      // ignore: avoid_print
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text(
+              'Error',
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            content: const Text(
+              'All fields are required',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
+                fontSize: 20,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    } else {
+      // call the method to login the user
+      final user = await _auth.SignInWithEmailAndPassword(
+          email,
+          password
+      );
+
+      if (user != null) {
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeEntry(),
+          ),
+        );
+      } else{
+        // ignore: use_build_context_synchronously
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text(
+                'Error',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              content: const Text(
+                'The supplied authentication credentials are incorrect, malformed or have expired',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Close'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +157,12 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 26),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
                         hintText: 'Email',
                         border: null,
                         filled: true,
@@ -77,11 +182,12 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 26),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: TextField(
+                      controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Password',
                         filled: true,
                         border: null,
@@ -147,14 +253,15 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeEntry(),
-                        ),
-                      );
-                    },
+                    onPressed:_handleLogin,
+                    // () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => const HomeEntry(),
+                    //     ),
+                    //   );
+                    // },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.red,
@@ -164,17 +271,20 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.login_outlined,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 8),
-                        Text('Login'),
-                      ],
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.login_outlined,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 8),
+                          Text('Login'),
+                        ],
+                      ),
                     ),
                   ),
                 ],

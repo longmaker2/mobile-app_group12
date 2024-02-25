@@ -1,11 +1,11 @@
-class User {
+class UserDetails {
 
-  final String id;
-  final String username;
-  final String email;
-  final String password;
+  final String? id;
+  final String? username;
+  final String? email;
+  final String? password;
 
-  const User({
+  const UserDetails({
     required this.id,
     required this.username,
     required this.email,
@@ -15,5 +15,5 @@ class User {
 
   // methods to create a new user in the cloud firestore
 
-  
+
 }

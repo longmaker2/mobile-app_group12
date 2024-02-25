@@ -1,8 +1,105 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import '../../models/services/authentication.dart';
 
-class Registration extends StatelessWidget {
+class Registration extends StatefulWidget {
   const Registration({super.key});
+
+  @override
+  State<Registration> createState() => _RegistrationState();
+}
+
+class _RegistrationState extends State<Registration> {
+
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+  // get the textControllers of the all fields
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  // get a method to register the user to the system
+  void _registerUser() async {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty &&
+        _nameController.text.isNotEmpty) {
+      // call the method to register the user
+      // ignore: unused_local_variable
+
+      final user = await _auth.SignUpWithEmailAndPassword(
+          _emailController.text,
+          _passwordController.text,
+      );
+
+      if (user != null) {
+        // ignore: use_build_context_synchronously
+
+        // firstly signout the user
+        _auth.SignOut();
+
+        // show them a message that account was created
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Account created successfully',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginPage(),
+          ),
+        );
+      } else {
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Something went wrong',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+
+    } else {
+      // show a user a message telling them to fill in all the data in the fields
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text(
+              'Error',
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            content: const Text(
+              'Please fill in all the fields',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
+                fontSize: 20,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +107,6 @@ class Registration extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -47,10 +143,12 @@ class Registration extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 26),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
                     hintText: 'Email',
                     border: null,
                     filled: true,
@@ -70,10 +168,11 @@ class Registration extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 26),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
                     hintText: 'Name',
                     border: null,
                     filled: true,
@@ -93,11 +192,12 @@ class Registration extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 26),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
+                  controller: _passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Password',
                     border: null,
                     filled: true,
@@ -128,11 +228,12 @@ class Registration extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 35),
                     child: GestureDetector(
                       onTap: () {
-                        // Handle the sign up action
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Already have an account? Sign in.',
@@ -147,7 +248,7 @@ class Registration extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _registerUser,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.red,
