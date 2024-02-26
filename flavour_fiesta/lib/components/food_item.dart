@@ -28,12 +28,13 @@ class FoodProduct extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.only(
-          left: 25.0,
+          left: 0.0,
           right: 50.0,
         ),
-        width: 180.0,
+        width: MediaQuery.of(context).size.width * 0.45,
+        height: MediaQuery.of(context).size.width * 0.6,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: Colors.grey[100],
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Column(
@@ -44,17 +45,24 @@ class FoodProduct extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
                 imagePath,
+                fit: BoxFit.contain,
+                width: 150.0,
+                height: 150.0,
               ),
             ),
 
             const SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 25.0, right: 4.0),
+              padding: const EdgeInsets.only(
+                left: 18.0,
+                right: 4.0,
+                bottom: 8.0,
+              ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,17 +82,20 @@ class FoodProduct extends StatelessWidget {
                       Text(
                         "Rwf $price",
                         style: TextStyle(
-                          color: Colors.yellow[600],
+                          color: Colors.yellow[700],
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    width: 10.0,
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
                       padding: const EdgeInsets.all(0.5),
                       decoration: const BoxDecoration(
-                        color:  Color.fromRGBO(26, 119, 237, 1),
+                        color: Color.fromRGBO(26, 119, 237, 1),
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12.0),
                           bottomRight: Radius.circular(12.0),
@@ -97,6 +108,9 @@ class FoodProduct extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10.0,
                   ),
                 ],
               ),

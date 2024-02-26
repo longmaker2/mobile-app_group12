@@ -15,12 +15,11 @@ class _AddOnState extends State<AddOn> {
       width: 100.0,
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.only(
-        left: 25.0,
-        right: 20.0,
+       right:10.0
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-        color: Colors.grey[300],
+        color: Colors.grey[100],
 
       ),
       child: ClipRRect(

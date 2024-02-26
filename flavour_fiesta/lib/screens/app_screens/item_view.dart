@@ -19,7 +19,6 @@ class ItemView extends StatefulWidget {
 }
 
 class _ItemViewState extends State<ItemView> {
-  // function to increase or decrease the count of items to buy
   int _countNumber = 1;
 
   void _increment() {
@@ -38,27 +37,16 @@ class _ItemViewState extends State<ItemView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-      ),
-      backgroundColor: const Color.fromRGBO(254, 55, 61, 0.9),
-      body: SingleChildScrollView(
-          child: Column(
+    return Container(
+      color: Colors.red,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30.0,
+              vertical: 40.0,
+            ),
             child: Center(
               child: Container(
                 height: 250,
@@ -72,8 +60,8 @@ class _ItemViewState extends State<ItemView> {
               ),
             ),
           ),
-          Container(
-              width: double.infinity,
+          Expanded(
+            child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50.0),
@@ -88,7 +76,6 @@ class _ItemViewState extends State<ItemView> {
                 ),
                 child: Column(
                   children: [
-                    //  rating button and price
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 18.0,
@@ -98,7 +85,6 @@ class _ItemViewState extends State<ItemView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // container for ratings
                           SizedBox(
                             height: 40.0,
                             width: 80.0,
@@ -114,7 +100,7 @@ class _ItemViewState extends State<ItemView> {
                                 children: [
                                   Icon(
                                     Icons.star,
-                                    color: Color.fromRGBO(243, 231, 64, 0.898),
+                                    color: Colors.yellow,
                                     size: 20.0,
                                   ),
                                   Text(
@@ -124,29 +110,26 @@ class _ItemViewState extends State<ItemView> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
                                     ),
+
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          //  price text
                           Text(
                             'Rwf ${widget.price * _countNumber}',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(251, 198, 9, 0.9),
+                              color: Colors.yellow.shade700,
                             ),
                           ),
                         ],
                       ),
                     ),
-
                     const SizedBox(
                       height: 20.0,
                     ),
-
-                    // description of the item with a counter to add or reduce count
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 18.0,
@@ -156,7 +139,6 @@ class _ItemViewState extends State<ItemView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // name of the item
                           Text(
                             widget.name,
                             style: const TextStyle(
@@ -165,21 +147,19 @@ class _ItemViewState extends State<ItemView> {
                               color: Colors.black,
                             ),
                           ),
-
-                          //  Increment and decrement buttons
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               OutlinedButton(
                                 onPressed: _decrement,
-                                // style: ButtonStyle(),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     const CircleBorder(
-                                        side: BorderSide(
-                                      color: Colors.red,
-                                    )),
+                                      side: BorderSide(
+                                        color: Colors.red,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 child: const Icon(
@@ -201,9 +181,10 @@ class _ItemViewState extends State<ItemView> {
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     const CircleBorder(
-                                        side: BorderSide(
-                                      color: Colors.red,
-                                    )),
+                                      side: BorderSide(
+                                        color: Colors.red,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 child: const Icon(
@@ -217,11 +198,11 @@ class _ItemViewState extends State<ItemView> {
                         ],
                       ),
                     ),
-
-                    //  add the description
                     const Padding(
                       padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 30.0),
+                        vertical: 5.0,
+                        horizontal: 30.0,
+                      ),
                       child: Text(
                         'Id dolore laborum dolore quis proident nostrud commodo. Id dolore laborum dolore quis',
                         style: TextStyle(
@@ -231,8 +212,6 @@ class _ItemViewState extends State<ItemView> {
                         ),
                       ),
                     ),
-
-                    // add the items to add to cart
                     const Padding(
                       padding: EdgeInsets.only(
                         left: 18.0,
@@ -242,9 +221,8 @@ class _ItemViewState extends State<ItemView> {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // name of the item
                           Text(
                             "Add Ons",
                             style: TextStyle(
@@ -256,11 +234,10 @@ class _ItemViewState extends State<ItemView> {
                         ],
                       ),
                     ),
-
                     const Padding(
                       padding: EdgeInsets.only(
-                        left: 18.0,
-                        right: 2.0,
+                        left: 0.0,
+                        right: 0.0,
                         top: 18.0,
                         bottom: 10.0,
                       ),
@@ -269,7 +246,6 @@ class _ItemViewState extends State<ItemView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            // create a list of all the add ons
                             AddOn(),
                             AddOn(),
                             AddOn(),
@@ -277,24 +253,35 @@ class _ItemViewState extends State<ItemView> {
                         ),
                       ),
                     ),
-
-                    //  add the button to add to cart
                     const Padding(
                       padding: EdgeInsets.only(
                         left: 60.0,
                         right: 40.0,
-                        top: 18.0,
+                        top: 20.0,
                         bottom: 10.0,
                       ),
                       child: AddToCart(),
+                    ),
+                    TextButton(
+                      onPressed: (){
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Close',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
             ),
+          ),
         ],
-      ),),
-      // should show everything
+      ),
     );
   }
 }
