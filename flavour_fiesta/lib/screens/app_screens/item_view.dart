@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flavour_fiesta/components/add_on.dart';
 import 'package:flavour_fiesta/components/add_to_cart_button.dart';
+import 'package:uuid/uuid.dart';
 
 class ItemView extends StatefulWidget {
   final String name;
@@ -46,6 +47,7 @@ class _ItemViewState extends State<ItemView> {
 
       // Saves data to the Firestore
       final Map<String, dynamic> orderData = {
+        'id': const Uuid().v4(),
         'name': widget.name,
         'imagePath': widget.imagePath,
         'price': widget.price,
@@ -59,6 +61,7 @@ class _ItemViewState extends State<ItemView> {
       await Future.delayed(Duration(milliseconds: 500));
 
       // Show a success message using a SnackBar
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(

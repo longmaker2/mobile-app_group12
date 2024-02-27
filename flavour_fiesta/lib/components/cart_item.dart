@@ -4,12 +4,16 @@ class CartItem extends StatefulWidget {
   final String itemName;
   final double itemPrice;
   final String itemImage;
+  final double quantity;
+  final void Function() onTap;
 
   const CartItem({
     super.key,
     required this.itemName,
     required this.itemPrice,
     required this.itemImage,
+    required this.quantity,
+    required this.onTap
   });
 
   @override
@@ -48,11 +52,11 @@ class _CartItemState extends State<CartItem> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
-            child: Image.asset(
+            child: Image.network(
               widget.itemImage,
               height: 80.0,
               width: 80.0,
-              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -110,7 +114,7 @@ class _CartItemState extends State<CartItem> {
         ),
         const Spacer(),
         IconButton(
-            onPressed: () {},
+            onPressed: widget.onTap,
             icon: const Icon(
               Icons.delete,
               color: Colors.black,
