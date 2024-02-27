@@ -40,20 +40,21 @@ class _CartItemState extends State<CartItem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding:const  EdgeInsets.all(10.0), // Adjust padding as needed
+          padding: const EdgeInsets.all(10.0), // Adjust padding as needed
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 247, 245, 245), // Set your desired background color
+            color: const Color.fromARGB(
+                255, 247, 245, 245), // Set your desired background color
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: Image.asset(
-                widget.itemImage,
-                height: 80.0,
-                width: 80.0,
-                fit: BoxFit.contain,
-              ),
+              widget.itemImage,
+              height: 80.0,
+              width: 80.0,
+              fit: BoxFit.contain,
             ),
+          ),
         ),
         const SizedBox(width: 10.0),
         Row(

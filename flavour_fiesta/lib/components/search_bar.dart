@@ -8,7 +8,7 @@ class SearchField extends StatelessWidget {
     required this.onSearchedFood,
   });
 
-  final  _searchController = TextEditingController();
+  final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,6 @@ class SearchField extends StatelessWidget {
           labelText: 'Search',
           focusedBorder: null,
           border: InputBorder.none,
-
           prefixIcon: GestureDetector(
             onTap: () {
               onSearchedFood(_searchController.text);

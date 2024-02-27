@@ -8,13 +8,12 @@ class FoodProduct extends StatelessWidget {
   final double price;
   final String description;
 
-  const FoodProduct({
-    super.key,
-    required this.name,
-    required this.imagePath,
-    required this.price,
-    required this.description
-  });
+  const FoodProduct(
+      {super.key,
+      required this.name,
+      required this.imagePath,
+      required this.price,
+      required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +23,11 @@ class FoodProduct extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                ItemView(
-                  name: name,
-                  imagePath: imagePath,
-                  price: price,
-                  description:description
-                ),
+            builder: (context) => ItemView(
+                name: name,
+                imagePath: imagePath,
+                price: price,
+                description: description),
           ),
         );
       },
