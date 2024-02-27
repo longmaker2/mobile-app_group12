@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 
 class FirebaseAuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // create a user object based on the firebase user
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+
   // ignore: non_constant_identifier_names
   Future<User?> SignUpWithEmailAndPassword(String email, String password) async {
     try {
@@ -58,5 +60,20 @@ class FirebaseAuthServices {
   Future<bool> isSignedIn() async {
     final currentUser = _auth.currentUser;
     return currentUser != null;
+  }
+
+
+  // save the user in the database with the name and email
+  // ignore: non_constant_identifier_names
+  Future<void> saveUserInDatabase(String name, String email) async {
+    try {
+      await _fireStore.collection('users').doc(email).set({
+        'name': name,
+        'email': email,
+      });
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+    }
   }
 }

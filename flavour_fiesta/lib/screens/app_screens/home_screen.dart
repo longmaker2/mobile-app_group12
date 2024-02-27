@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flavour_fiesta/components/food_categories.dart';
 import 'package:flavour_fiesta/components/food_item.dart';
 import 'package:flavour_fiesta/components/promotion_card.dart';
 import 'package:flavour_fiesta/components/search_bar.dart';
-import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,108 +13,110 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //  tap function to know which food category is tapped
+  // Function to handle when a food category is selected
   void onSelectedFoodCategory(String category) {
     debugPrint(category);
   }
 
-  // get the searched for food
+  // Function to handle when a food is searched
   void onSearchedFood(String food) {
     debugPrint(food);
   }
+
+  // Stream to get categories from Firestore
+  final Stream<QuerySnapshot> dbcategories =
+      FirebaseFirestore.instance.collection('Category').snapshots();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // header
+            // Header
             const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Home',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Home',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Icon(
-                    Icons.notifications,
-                    color: Colors.black,
-                    size: 25.0,
-                  )
-                ]),
-            const SizedBox(
-              height: 20,
+                ),
+                Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                  size: 25.0,
+                )
+              ],
             ),
-            // search bar
+           const SizedBox(height: 20),
+            // Search bar
             SearchField(
               onSearchedFood: onSearchedFood,
             ),
+          const  SizedBox(height: 20),
 
-            const SizedBox(
-              height: 20,
-            ),
-
-            // show the food categories
+            // Food categories (Scrollable horizontally)
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 30.0,
                 ),
                 child: Row(
                   children: [
-                    FoodCategory(
-                        imagePath: 'images/rice.png',
-                        name: 'Pizza',
-                        onTap: () {
-                          onSelectedFoodCategory('Pizza');
-                        }),
-                    FoodCategory(
-                        imagePath: 'images/rice.png',
-                        name: 'Burger',
-                        onTap: () {
-                          onSelectedFoodCategory('Burger');
-                        }),
-                    FoodCategory(
-                        imagePath: 'images/rice.png',
-                        name: 'Ice Cream',
-                        onTap: () {
-                          onSelectedFoodCategory('Ice Cream');
-                        }),
-                    FoodCategory(
-                        imagePath: 'images/rice.png',
-                        name: 'Beer',
-                        onTap: () {
-                          onSelectedFoodCategory('Beer');
-                        }),
-                    FoodCategory(
-                        imagePath: 'images/rice.png',
-                        name: 'Cocktail',
-                        onTap: () {
-                          onSelectedFoodCategory('Cocktail');
-                        }),
+                    StreamBuilder<QuerySnapshot>(
+                      stream: dbcategories,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child:
+                                  CircularProgressIndicator()); // Show loading indicator
+                        }
+                        if (snapshot.hasError) {
+                          return const Center(
+                              child: Text(
+                                  'Something went wrong')); // Show error message
+                        }
+                        if (snapshot.data!.docs.isEmpty) {
+                          return const Center(
+                              child: Text('No data found')); // Show message for empty data
+                        }
+                        // Data is available, display the categories
+                        final data = snapshot.requireData;
+
+                        return Row(
+                          children: data.docs.map((doc) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: FoodCategory(
+                                imagePath: doc['imagePath'],
+                                name: doc['name'],
+                                onTap: () {
+                                  onSelectedFoodCategory(doc['name']);
+                                },
+                              ),
+                            );
+                          }).toList(),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            // promotions
-            const PromotionCard(),
-            const SizedBox(
-              height: 20,
-            ),
-
-            // popular
+            const SizedBox(height: 20),
+            // Promotions
+           const PromotionCard(),
+           const SizedBox(height: 20),
+            // Popular items
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -124,9 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(

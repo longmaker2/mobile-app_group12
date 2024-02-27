@@ -32,10 +32,14 @@ class FoodCategory extends StatelessWidget {
               elevation: 0.0,
               child: Container(
                 margin: const EdgeInsets.all(10.0),
-                child: Image.asset(
-                  imagePath,
-                  height: 50.0,
-                  width: 50.0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25.0),
+                  child: Image.network(
+                    imagePath,
+                    height: 50.0,
+                    width: 50.0,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
