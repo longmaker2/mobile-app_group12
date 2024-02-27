@@ -1,12 +1,12 @@
 class FoodItem {
   final String name;
-  final String imagePath;
+  final String image;
   final double price;
   final String description;
 
   const FoodItem({
     required this.name,
-    required this.imagePath,
+    required this.image,
     required this.price,
     required this.description,
   });

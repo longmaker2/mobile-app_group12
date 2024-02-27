@@ -10,7 +10,6 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-
   final FirebaseAuthServices _auth = FirebaseAuthServices();
 
   // get the textControllers of the all fields
@@ -26,8 +25,8 @@ class _RegistrationState extends State<Registration> {
       // ignore: unused_local_variable
 
       final user = await _auth.SignUpWithEmailAndPassword(
-          _emailController.text,
-          _passwordController.text,
+        _emailController.text,
+        _passwordController.text,
       );
 
       if (user != null) {
@@ -64,7 +63,6 @@ class _RegistrationState extends State<Registration> {
           ),
         );
       }
-
     } else {
       // show a user a message telling them to fill in all the data in the fields
       showDialog(
@@ -105,8 +103,8 @@ class _RegistrationState extends State<Registration> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
-          height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,

@@ -6,12 +6,14 @@ class ItemView extends StatefulWidget {
   final String name;
   final String imagePath;
   final double price;
+  final String description;
 
   const ItemView({
     super.key,
     required this.name,
     required this.imagePath,
     required this.price,
+    required this.description
   });
 
   @override
@@ -27,12 +29,21 @@ class _ItemViewState extends State<ItemView> {
     });
   }
 
+
+
   void _decrement() {
     setState(() {
       if (_countNumber > 1) {
         _countNumber--;
       }
     });
+  }
+
+
+  // fucntion to add the item to card
+  void addUserItemToCard() async {
+    debugPrint("users items");
+ 
   }
 
   @override
@@ -53,7 +64,7 @@ class _ItemViewState extends State<ItemView> {
                 width: 250,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.imagePath),
+                    image: NetworkImage(widget.imagePath),
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -198,14 +209,14 @@ class _ItemViewState extends State<ItemView> {
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(
+                    Padding(
+                      padding:const EdgeInsets.symmetric(
                         vertical: 5.0,
                         horizontal: 30.0,
                       ),
                       child: Text(
-                        'Id dolore laborum dolore quis proident nostrud commodo. Id dolore laborum dolore quis',
-                        style: TextStyle(
+                        widget.description,
+                        style:const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.normal,
                           color: Colors.grey,
@@ -253,14 +264,16 @@ class _ItemViewState extends State<ItemView> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(
+                    Padding(
+                      padding:const EdgeInsets.only(
                         left: 60.0,
                         right: 40.0,
                         top: 20.0,
                         bottom: 10.0,
                       ),
-                      child: AddToCart(),
+                      child: AddToCart(
+                        onTap:addUserItemToCard
+                      ),
                     ),
                     TextButton(
                       onPressed: (){

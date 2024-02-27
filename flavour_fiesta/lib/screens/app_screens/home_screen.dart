@@ -27,6 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final Stream<QuerySnapshot> dbcategories =
       FirebaseFirestore.instance.collection('Category').snapshots();
 
+  // Stream to get categories from Firestore
+  final Stream<QuerySnapshot> dbfoods =
+      FirebaseFirestore.instance.collection('Food ').snapshots();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,17 +57,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-           const SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Search bar
             SearchField(
               onSearchedFood: onSearchedFood,
             ),
-          const  SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Food categories (Scrollable horizontally)
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 30.0,
@@ -87,7 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                         if (snapshot.data!.docs.isEmpty) {
                           return const Center(
-                              child: Text('No data found')); // Show message for empty data
+                              child: Text(
+                                  'No data found')); // Show message for empty data
                         }
                         // Data is available, display the categories
                         final data = snapshot.requireData;
@@ -114,46 +118,70 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 20),
             // Promotions
-           const PromotionCard(),
-           const SizedBox(height: 20),
+            const PromotionCard(),
+            const SizedBox(height: 20),
             // Popular items
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Popular',
                   style: TextStyle(
                     fontSize: 26.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      FoodProduct(
-                        name: 'Full chicken',
-                        imagePath: 'images/rice.png',
-                        price: 10000,
+                      StreamBuilder<QuerySnapshot>(
+                        stream: dbfoods,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child:
+                                    CircularProgressIndicator()); // Show loading indicator
+                          }
+                          if (snapshot.hasError) {
+                            return const Center(
+                                child: Text(
+                                    'Something went wrong')); // Show error message
+                          }
+                          if (snapshot.data!.docs.isEmpty) {
+                            return const Center(
+                                child: Text(
+                                    'No foods found')); // Show message for empty data
+                          }
+                          // Data is available, display the categories
+                          final data = snapshot.requireData;
+
+                          return Row(
+                            children: data.docs.map((doc) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: FoodProduct(
+                                  name: doc['name'],
+                                  imagePath: doc['image'],
+                                  price: 4000,
+                                  description: doc['description']
+                                ),
+                              );
+                            }).toList(),
+                          );
+                        },
                       ),
-                      FoodProduct(
-                        name: 'Full chicken',
-                        imagePath: 'images/rice.png',
-                        price: 10000,
-                      ),
-                      FoodProduct(
-                        name: 'Full chicken',
-                        imagePath: 'images/rice.png',
-                        price: 10000,
-                      ),
-                      FoodProduct(
-                        name: 'Full chicken',
-                        imagePath: 'images/rice.png',
-                        price: 10000,
-                      ),
+
+                      // FoodProduct(
+                      //   name: 'Full chicken',
+                      //   imagePath: 'images/rice.png',
+                      //   price: 10000,
+                      // ),
                     ],
                   ),
                 ),

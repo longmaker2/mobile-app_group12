@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 
-class AddToCart extends StatefulWidget {
-  const AddToCart({super.key});
+class AddToCart extends StatelessWidget {
+  final void Function()? onTap;
 
-  @override
-  State<AddToCart> createState() => _AddToCartState();
-}
+  const AddToCart({
+    super.key,
+    required this.onTap
+  });
 
-class _AddToCartState extends State<AddToCart> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.red,
         shape: RoundedRectangleBorder(

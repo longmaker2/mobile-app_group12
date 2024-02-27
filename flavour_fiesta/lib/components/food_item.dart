@@ -1,3 +1,4 @@
+import 'package:flavour_fiesta/models/food.dart';
 import 'package:flavour_fiesta/screens/app_screens/item_view.dart';
 import 'package:flutter/material.dart';
 
@@ -5,12 +6,14 @@ class FoodProduct extends StatelessWidget {
   final String name;
   final String imagePath;
   final double price;
+  final String description;
 
   const FoodProduct({
     super.key,
     required this.name,
     required this.imagePath,
     required this.price,
+    required this.description
   });
 
   @override
@@ -22,7 +25,12 @@ class FoodProduct extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) =>
-                ItemView(name: name, imagePath: imagePath, price: price),
+                ItemView(
+                  name: name,
+                  imagePath: imagePath,
+                  price: price,
+                  description:description
+                ),
           ),
         );
       },
@@ -43,7 +51,7 @@ class FoodProduct extends StatelessWidget {
             // image of the shoe
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 fit: BoxFit.contain,
                 width: 150.0,

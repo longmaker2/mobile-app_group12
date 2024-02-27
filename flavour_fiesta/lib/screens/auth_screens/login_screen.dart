@@ -58,10 +58,7 @@ class _LoginPageState extends State<LoginPage> {
       return;
     } else {
       // call the method to login the user
-      final user = await _auth.SignInWithEmailAndPassword(
-          email,
-          password
-      );
+      final user = await _auth.SignInWithEmailAndPassword(email, password);
 
       if (user != null) {
         // ignore: use_build_context_synchronously
@@ -71,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context) => const HomeEntry(),
           ),
         );
-      } else{
+      } else {
         // ignore: use_build_context_synchronously
         showDialog(
           context: context,
@@ -112,8 +109,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
-          height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -253,7 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
-                    onPressed:_handleLogin,
+                    onPressed: _handleLogin,
                     // () {
                     //   Navigator.push(
                     //     context,
