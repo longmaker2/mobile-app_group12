@@ -53,7 +53,7 @@ class FoodProduct extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: Image.network(
                 imagePath,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
                 width: 150.0,
                 height: 150.0,
               ),
