@@ -43,6 +43,13 @@ class FirebaseAuthServices {
   }
 
 
+  // get the current login user
+  Future<User?> getCurrentUser() async {
+    // check if there is a user or not
+    return _auth.currentUser;
+  }
+
+
    // sign out
    // ignore: non_constant_identifier_names
   Future<void> SignOut() async {

@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           displaySmall: GoogleFonts.pacifico(),
         ),
       ),
-      home: const DetermineOnBoarding(),
+      home: DetermineOnBoarding(),
     );
   }
 }
