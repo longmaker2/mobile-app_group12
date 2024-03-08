@@ -1,29 +1,27 @@
+import 'package:flutter/material.dart';
 import 'package:flavour_fiesta/models/services/authentication.dart';
 import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
-import 'package:flutter/material.dart';
-import 'register.dart';
+import 'package:flavour_fiesta/screens/auth_screens/register.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // get the auth instance from our services
   final FirebaseAuthServices _auth = FirebaseAuthServices();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  // get the user password and password
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  // function to handle logins to the applicaiton
   Future<void> _handleLogin() async {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
     if (email.isEmpty || password.isEmpty) {
-      // ignore: avoid_print
       showDialog(
         context: context,
         builder: (context) {
@@ -57,11 +55,8 @@ class _LoginPageState extends State<LoginPage> {
       );
       return;
     } else {
-      // call the method to login the user
       final user = await _auth.SignInWithEmailAndPassword(email, password);
-
       if (user != null) {
-        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -69,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       } else {
-        // ignore: use_build_context_synchronously
         showDialog(
           context: context,
           builder: (context) {
@@ -102,6 +96,33 @@ class _LoginPageState extends State<LoginPage> {
           },
         );
       }
+    }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        final UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+        final User? user = userCredential.user;
+        if (user != null) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeEntry(),
+            ),
+          );
+        }
+      }
+    } catch (error) {
+      print('Google Sign-In Error: $error');
     }
   }
 
@@ -240,17 +261,122 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 35),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    child: TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        hintText: 'Password',
+                        filled: true,
+                        border: null,
+                        fillColor: Color(0xFFF3F3F3),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: Colors.red,
+                        ),
+                        suffixIcon: Icon(
+                          Icons.visibility,
+                          color: Colors.grey,
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Registration(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: const Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: _handleLogin,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 80, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.login_outlined,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 8),
+                        Text('Login'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: _handleGoogleSignIn,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(
+                              'images/google_logo.png',
+                              height: 35,
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              'Sign in with Google',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
