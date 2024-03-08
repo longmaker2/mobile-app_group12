@@ -115,20 +115,14 @@ class _RegistrationState extends State<Registration> {
               ],
             ),
           ),
-           padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.01,
-            vertical: MediaQuery.of(context).size.height * 0.09,
-          ),
-
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 'images/signup.png',
                 height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.width * 0.9,
-                fit: BoxFit.contain,
+                width: MediaQuery.of(context).size.width,
               ),
               const SizedBox(height: 20),
               const Text(
