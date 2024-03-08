@@ -132,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -143,123 +142,64 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          // padding: const EdgeInsets.all(20),
-          padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.01,
-            vertical: MediaQuery.of(context).size.height * 0.09,
-          ),
-
+          padding: const EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                'images/login.png',
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.width * 0.9,
-                fit: BoxFit.contain,
-              ),
-              const SizedBox(height: 10.0),
-              const Text(
-                'Welcome Back',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 70),
-                child: Text(
-                  'We are here to make sure you get the best meal cooked by our expert chefs.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              const SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
-                child: TextField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: 'Email',
-                    border: null,
-                    filled: true,
-                    fillColor: Color(0xFFF3F3F3),
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.red,
-                      ),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.mail_outline,
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
-                child: TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Password',
-                    filled: true,
-                    border: null,
-                    fillColor: Color(0xFFF3F3F3),
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.red,
-                      ),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.lock_outline,
-                      color: Colors.red,
-                    ),
-                    suffixIcon: Icon(
-                      Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'images/login.png',
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Welcome Back',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 70),
+                    child: Text(
+                      'We are here to make sure you get the best meal cooked by our expert chefs.',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 35),
-                    child: GestureDetector(
-                      onTap: () {
-                        // Handle the sign up action
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Registration(),
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    child: TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
+                        border: null,
+                        filled: true,
+                        fillColor: Color(0xFFF3F3F3),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.red,
                           ),
-                        );
-                      },
-                      child: const Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
+                        ),
+                        prefixIcon: Icon(
+                          Icons.mail_outline,
+                          color: Colors.red,
                         ),
                       ),
                     ),
                   ),
-                  const Spacer(),
+                  const SizedBox(height: 16),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: TextField(
@@ -379,34 +319,6 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ],
-              ),
-              const SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: _handleLogin,
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.red,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.login_outlined,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 8),
-                      Text('Login'),
-                    ],
-                  ),
-                ),
               ),
             ],
           ),

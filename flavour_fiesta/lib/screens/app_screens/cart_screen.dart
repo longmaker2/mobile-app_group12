@@ -3,19 +3,7 @@
 import 'package:flavour_fiesta/components/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-
-
-
-
-
-
-
-
-
-
-
-
+import 'package:uuid/uuid.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -239,7 +227,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 onPressed: (){
-
+                  
                 },
                 child: const Center(
                   child: Padding(

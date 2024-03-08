@@ -77,10 +77,4 @@ class FirebaseAuthServices {
       throw e;
     }
   }
-
-   // get the current login user
-  Future<User?> getCurrentUser() async {
-    // check if there is a user or not
-    return _auth.currentUser;
-  }
 }

@@ -1,14 +1,12 @@
-import 'package:flavour_fiesta/models/providers/has_seen_boarding.dart';
 import 'package:flavour_fiesta/screens/onboarding_screens/signin_register_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LandingPage extends ConsumerWidget {
+class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
 
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -39,13 +37,6 @@ class LandingPage extends ConsumerWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Accessing the StateNotifierProvider and calling setHasSeenBoarding
-                  ref.read(hasSeenBoardingProvider.notifier).setHasSeenBoarding();
-
-                  //  console log the new state of the provider
-                  // ignore: avoid_print
-                  print(ref.read(hasSeenBoardingProvider));
-                  
                   Navigator.push(
                     context,
                     MaterialPageRoute(
