@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
 
   Future<void> _handleLogin() async {
     String email = _emailController.text.trim();
@@ -204,26 +205,35 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: TextField(
                       controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
+                      obscureText: !_isPasswordVisible,
+                      decoration: InputDecoration(
                         hintText: 'Password',
                         filled: true,
                         border: null,
-                        fillColor: Color(0xFFF3F3F3),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                        focusedBorder: OutlineInputBorder(
+                        fillColor: const Color(0xFFF3F3F3),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 50),
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Colors.red,
                           ),
                         ),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock_outline,
                           color: Colors.red,
                         ),
-                        suffixIcon: Icon(
-                          Icons.visibility,
-                          color: Colors.grey,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
                         ),
                       ),
                     ),
