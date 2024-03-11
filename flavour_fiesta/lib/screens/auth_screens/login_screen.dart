@@ -4,6 +4,7 @@ import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
 import 'package:flavour_fiesta/screens/auth_screens/register.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flavour_fiesta/components/square_tile.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -264,7 +265,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const Spacer(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        padding: const EdgeInsets.symmetric(horizontal: 29),
                         child: GestureDetector(
                           onTap: () {},
                           child: const Text(
@@ -304,30 +305,42 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Column(
+                  // Column(
+                  //   children: [
+                  //     GestureDetector(
+                  //       onTap: _handleGoogleSignIn,
+                  //       child: Row(
+                  //         mainAxisSize: MainAxisSize.min,
+                  //         children: [
+                  //           Image.asset(
+                  //             'images/google_logo.png',
+                  //             height: 35,
+                  //           ),
+                  //           const SizedBox(width: 8),
+                  //           const Text(
+                  //             'Sign in with Google',
+                  //             style: TextStyle(
+                  //               fontSize: 16,
+                  //               color: Colors.white,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
-                        onTap: _handleGoogleSignIn,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(
-                              'images/google_logo.png',
-                              height: 35,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'Sign in with Google',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      SquareTile(
+                          onTap: _handleGoogleSignIn,
+                          imagePath: 'images/google_logo.png'),
+                      const SizedBox(width: 25),
+                      SquareTile(
+                          onTap: () {}, imagePath: 'images/apple_icon.png'),
                     ],
-                  ),
+                  )
                 ],
               ),
             ],
