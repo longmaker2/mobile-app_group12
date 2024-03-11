@@ -12,7 +12,20 @@
           "package_name": "com.example.flavour_fiesta"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1018375867888-3gnad20vc8turde7m6qpct1pcrk6phm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flavour_fiesta",
+            "certificate_hash": "b0fc60878f611c47041681bc7e4e6bbd3112ca93"
+          }
+        },
+        {
+          "client_id": "1018375867888-souuu8ujte8d3mhvgrlgmlmlqaov32ju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDa45CFx_bTCQ2E-FgcQmr3SmXV-WQKls0"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018375867888-souuu8ujte8d3mhvgrlgmlmlqaov32ju.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1018375867888-2jd3tp5blvgp5ugp67e58ghdj4dgjake.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flavourFiesta"
+              }
+            }
+          ]
         }
       }
     }

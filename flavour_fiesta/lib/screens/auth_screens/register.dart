@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import '../../models/services/authentication.dart';
+import '../../components/square_tile.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -11,6 +15,7 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   // get the textControllers of the all fields
   final _nameController = TextEditingController();
@@ -96,6 +101,33 @@ class _RegistrationState extends State<Registration> {
           );
         },
       );
+    }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        final UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+        final User? user = userCredential.user;
+        if (user != null) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeEntry(),
+            ),
+          );
+        }
+      }
+    } catch (error) {
+      print('Google Sign-In Error: $error');
     }
   }
 
@@ -223,7 +255,7 @@ class _RegistrationState extends State<Registration> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 35),
+                    padding: const EdgeInsets.symmetric(horizontal: 23),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -269,6 +301,16 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SquareTile(
+                      onTap: _handleGoogleSignIn,
+                      imagePath: 'images/google_logo.png'),
+                  const SizedBox(width: 25),
+                  SquareTile(onTap: () {}, imagePath: 'images/apple_icon.png'),
+                ],
+              )
             ],
           ),
         ),
