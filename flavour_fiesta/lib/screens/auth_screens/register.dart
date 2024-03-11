@@ -21,6 +21,7 @@ class _RegistrationState extends State<Registration> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
   // get a method to register the user to the system
   void _registerUser() async {
     if (_emailController.text.isNotEmpty &&
@@ -226,26 +227,32 @@ class _RegistrationState extends State<Registration> {
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
                   controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: !_isPasswordVisible,
+                  decoration: InputDecoration(
+                    // Remove 'const' here
                     hintText: 'Password',
                     border: null,
                     filled: true,
                     fillColor: Color(0xFFF3F3F3),
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.red,
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 50),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                    prefixIcon:
+                        const Icon(Icons.lock_outline, color: Colors.red),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Colors.grey,
                       ),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.lock_outline,
-                      color: Colors.red,
-                    ),
-                    suffixIcon: Icon(
-                      Icons.visibility,
-                      color: Colors.grey,
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
                     ),
                   ),
                 ),
