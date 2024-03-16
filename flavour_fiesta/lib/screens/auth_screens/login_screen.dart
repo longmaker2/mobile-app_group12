@@ -330,6 +330,11 @@ class _LoginPageState extends State<LoginPage> {
                   //   ],
                   // ),
 
+                  const Text(
+                    'Other Sign in Options',
+                    style: TextStyle(color: Colors.white),
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

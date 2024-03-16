@@ -308,6 +308,10 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               const SizedBox(height: 20),
+              const Text(
+                'Other Sign in Options',
+                style: TextStyle(color: Colors.white),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
