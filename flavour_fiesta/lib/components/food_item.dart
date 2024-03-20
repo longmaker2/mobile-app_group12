@@ -36,14 +36,15 @@ class FoodProduct extends StatelessWidget {
           left: 0.0,
           right: 50.0,
         ),
-        width: MediaQuery.of(context).size.width * 0.45,
+        width: MediaQuery.of(context).size.width * 0.5,
         height: MediaQuery.of(context).size.width * 0.6,
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // image of the shoe
             ClipRRect(
@@ -51,8 +52,8 @@ class FoodProduct extends StatelessWidget {
               child: Image.network(
                 imagePath,
                 fit: BoxFit.cover,
-                width: 150.0,
-                height: 150.0,
+                width: 120.0,
+                height: 120.0,
               ),
             ),
 

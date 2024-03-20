@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
 
   Future<void> _handleLogin() async {
-    String email = _emailController.text.trim();
+    String email = _emailController.text.toLowerCase().trim();
     String password = _passwordController.text.trim();
     if (email.isEmpty || password.isEmpty) {
       showDialog(

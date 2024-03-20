@@ -8,10 +8,24 @@ class FirebaseAuthServices {
 
   // ignore: non_constant_identifier_names
   Future<User?> SignUpWithEmailAndPassword(
-      String email, String password) async {
+      String name, String email, String password) async {
     try {
+      // step 1, lets create the user with the sign app
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+      // Step 2: Store additional user information in Firestore
+      await _fireStore.collection('users').doc(credential.user!.uid).set({
+        'uid': credential.user!.uid,
+        'name': name,
+        'email': email,
+        'profilePic': "",
+        'phoneNumber': "",
+        'address': "",
+        'role': "user",
+        // Add any additional user information you want to store
+      });
+
       return credential.user;
     } catch (e) {
       // ignore: avoid_print
@@ -41,6 +55,7 @@ class FirebaseAuthServices {
   Future<void> SignOut() async {
     try {
       await _auth.signOut();
+      return;
     } catch (e) {
       // ignore: avoid_print
       print(e.toString());
@@ -67,6 +82,20 @@ class FirebaseAuthServices {
       print(e.toString());
     }
   }
+
+  Future<User?> getCurrentUser() async {
+    try {
+      User? user = _auth.currentUser;
+      return user;
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+      return null;
+    }
+  }
+
+  // get the details of user login
+  // ignore: non_constant_identifier_names
 
   Future<UserCredential> signInWithCredential(AuthCredential credential) async {
     try {

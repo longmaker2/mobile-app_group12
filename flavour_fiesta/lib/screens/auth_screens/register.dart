@@ -31,7 +31,8 @@ class _RegistrationState extends State<Registration> {
       // ignore: unused_local_variable
 
       final user = await _auth.SignUpWithEmailAndPassword(
-        _emailController.text,
+        _nameController.text.toLowerCase().trim(),
+        _emailController.text.toLowerCase().trim(),
         _passwordController.text,
       );
 

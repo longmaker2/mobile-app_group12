@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flavour_fiesta/components/add_on.dart';
 import 'package:flavour_fiesta/components/add_to_cart_button.dart';
+import 'package:flutter/widgets.dart';
 import 'package:uuid/uuid.dart';
 
 class ItemView extends StatefulWidget {
@@ -90,17 +91,23 @@ class _ItemViewState extends State<ItemView> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 30.0,
+                horizontal: 20.0,
                 vertical: 40.0,
               ),
               child: Center(
-                child: Container(
-                  height: 250,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(widget.imagePath),
-                      fit: BoxFit.contain,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30.0),
+                  clipBehavior: Clip.antiAlias,
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          widget.imagePath,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -147,14 +154,14 @@ class _ItemViewState extends State<ItemView> {
                                     Icon(
                                       Icons.star,
                                       color: Colors.yellow,
-                                      size: 20.0,
+                                      size: 16.0,
                                     ),
                                     Text(
                                       '4.5',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
+                                        fontSize: 16.0,
                                       ),
                                     ),
                                   ],
@@ -164,7 +171,7 @@ class _ItemViewState extends State<ItemView> {
                             Text(
                               'Rwf ${widget.price * _countNumber}',
                               style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 16.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.yellow.shade700,
                               ),
@@ -180,67 +187,74 @@ class _ItemViewState extends State<ItemView> {
                           left: 18.0,
                           right: 2.0,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              widget.name,
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                OutlinedButton(
-                                  onPressed: _decrement,
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                      const CircleBorder(
-                                        side: BorderSide(
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  child: const Icon(
-                                    Icons.remove,
-                                    color: Colors.red,
-                                    size: 30.0,
-                                  ),
-                                ),
-                                Text(
-                                  '$_countNumber',
+                        child: Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                             Text(
+                                  widget.name,
                                   style: const TextStyle(
-                                    fontSize: 20.0,
+                                    fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.red,
+                                    color: Colors.black,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
+                                  maxLines: 1, // Limiting to one line
+                                  overflow: TextOverflow
+                                      .ellipsis, // Handling overflow
                                 ),
-                                OutlinedButton(
-                                  onPressed: _increment,
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                      const CircleBorder(
-                                        side: BorderSide(
-                                          color: Colors.red,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  OutlinedButton(
+                                    onPressed: _decrement,
+                                    style: ButtonStyle(
+                                      shape: MaterialStateProperty.all(
+                                        const CircleBorder(
+                                          side: BorderSide(
+                                            color: Colors.red,
+                                          ),
                                         ),
                                       ),
                                     ),
+                                    child: const Icon(
+                                      Icons.remove,
+                                      color: Colors.red,
+                                      size: 16.0,
+                                    ),
                                   ),
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: Colors.red,
-                                    size: 30.0,
+                                  Text(
+                                    '$_countNumber',
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  OutlinedButton(
+                                    onPressed: _increment,
+                                    style: ButtonStyle(
+                                      shape: MaterialStateProperty.all(
+                                        const CircleBorder(
+                                          side: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: Colors.red,
+                                      size: 16.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
@@ -255,6 +269,8 @@ class _ItemViewState extends State<ItemView> {
                             fontWeight: FontWeight.normal,
                             color: Colors.grey,
                           ),
+                          maxLines: 3, // Limiting to three lines
+                          overflow: TextOverflow.ellipsis, // Handling overflow
                         ),
                       ),
                       const Padding(

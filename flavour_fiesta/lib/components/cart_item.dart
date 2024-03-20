@@ -4,7 +4,7 @@ class CartItem extends StatefulWidget {
   final String itemName;
   final double itemPrice;
   final String itemImage;
-  final double quantity;
+  final int quantity;
   final void Function() onTap;
 
   const CartItem({
