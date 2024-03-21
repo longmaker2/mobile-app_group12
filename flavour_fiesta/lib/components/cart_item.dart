@@ -21,7 +21,13 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  int _countNumber = 1;
+  late int _countNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    _countNumber = widget.quantity;
+  }
 
   void _increment() {
     setState(() {

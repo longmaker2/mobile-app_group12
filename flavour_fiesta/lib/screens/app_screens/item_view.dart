@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flavour_fiesta/models/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flavour_fiesta/components/add_on.dart';
@@ -24,7 +26,22 @@ class ItemView extends StatefulWidget {
 }
 
 class _ItemViewState extends State<ItemView> {
+  FirebaseAuthServices _authservices = FirebaseAuthServices();
+  User? _currentUser;
   int _countNumber = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser(); // Call method to get current user when the screen initializes
+  }
+
+  Future<void> getCurrentUser() async {
+    User? user = await _authservices.getCurrentUser(); // Get current user
+    setState(() {
+      _currentUser = user; // Update state with current user
+    });
+  }
 
   void _increment() {
     setState(() {
@@ -49,9 +66,10 @@ class _ItemViewState extends State<ItemView> {
       // Saves data to the Firestore
       final Map<String, dynamic> orderData = {
         'id': const Uuid().v4(),
+        'user': _currentUser!.email,
         'name': widget.name,
         'imagePath': widget.imagePath,
-        'price': widget.price,
+        'price': widget.price * _countNumber,
         'quantity': _countNumber,
       };
 
@@ -59,7 +77,7 @@ class _ItemViewState extends State<ItemView> {
       await firestore.collection('Orders').add(orderData);
 
       // Delay showing the SnackBar to avoid interference with the "Close" button
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
 
       // Show a success message using a SnackBar
       // ignore: use_build_context_synchronously
@@ -74,7 +92,8 @@ class _ItemViewState extends State<ItemView> {
         ),
       );
 
-      debugPrint("Order added to Firestore successfully!");
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
     } catch (error) {
       // Handle any errors that occur during the process
       debugPrint("Error adding order to Firestore: $error");
@@ -192,18 +211,18 @@ class _ItemViewState extends State<ItemView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                             Text(
-                                  widget.name,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  maxLines: 1, // Limiting to one line
-                                  overflow: TextOverflow
-                                      .ellipsis, // Handling overflow
+                              Text(
+                                widget.name,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
+                                maxLines: 1, // Limiting to one line
+                                overflow:
+                                    TextOverflow.ellipsis, // Handling overflow
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,

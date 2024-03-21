@@ -52,8 +52,8 @@ class FoodProduct extends StatelessWidget {
               child: Image.network(
                 imagePath,
                 fit: BoxFit.cover,
-                width: 120.0,
-                height: 120.0,
+                width: 150.0,
+                height: 150.0,
               ),
             ),
 
