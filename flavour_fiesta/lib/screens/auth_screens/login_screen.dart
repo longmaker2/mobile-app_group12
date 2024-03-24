@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flavour_fiesta/models/services/authentication.dart';
 import 'package:flavour_fiesta/screens/app_screens/home_entry.dart';
@@ -7,7 +9,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flavour_fiesta/components/square_tile.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final FirebaseAuth firebaseAuth;
+
+  const LoginPage({super.key, required this.firebaseAuth});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -55,7 +59,6 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       );
-      return;
     } else {
       final user = await _auth.SignInWithEmailAndPassword(email, password);
       if (user != null) {
@@ -180,6 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: TextField(
+                      key: const Key('email_field'),
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
@@ -205,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: TextField(
+                      key: const Key('password_field'),
                       controller: _passwordController,
                       obscureText: !_isPasswordVisible,
                       decoration: InputDecoration(
@@ -281,7 +286,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
-                    onPressed: _handleLogin,
+                    onPressed: () => _handleLogin(),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.red,

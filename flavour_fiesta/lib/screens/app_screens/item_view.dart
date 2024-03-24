@@ -111,7 +111,7 @@ class _ItemViewState extends State<ItemView> {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 40.0,
+                vertical: 20.0,
               ),
               child: Center(
                 child: ClipRRect(

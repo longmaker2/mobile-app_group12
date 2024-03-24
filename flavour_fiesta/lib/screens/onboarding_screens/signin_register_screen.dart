@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flavour_fiesta/screens/auth_screens/login_screen.dart';
 import 'package:flavour_fiesta/screens/auth_screens/register.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,9 @@ class SigninScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                            builder: (context) => LoginPage(
+                              firebaseAuth: FirebaseAuth.instance,
+                            ),
                           ),
                         );
                       },

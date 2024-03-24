@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import '../../models/services/authentication.dart';
@@ -37,28 +39,53 @@ class _RegistrationState extends State<Registration> {
       );
 
       if (user != null) {
-        // ignore: use_build_context_synchronously
+        // ignore: duplicate_ignore
+        // ignore: use_build_scontext_synchronously
 
         // firstly signout the user
-        _auth.SignOut();
+        // _auth.SignOut();
 
-        // show them a message that account was created
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Account created successfully',
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: Colors.green,
-          ),
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text(
+                'Welcome to FlavourFiesta',
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              content: const Text(
+                'Account created successfully',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 20,
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(
+                          firebaseAuth: FirebaseAuth.instance,
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text('Close'),
+                ),
+              ],
+            );
+          },
         );
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
-          ),
-        );
+        return _auth.SignOut();
       } else {
+        // ignore: duplicate_ignore
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -178,6 +205,7 @@ class _RegistrationState extends State<Registration> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
+                  key: const Key('emailField'),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
@@ -203,6 +231,7 @@ class _RegistrationState extends State<Registration> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
+                  key: const Key('nameField'),
                   controller: _nameController,
                   decoration: const InputDecoration(
                     hintText: 'Name',
@@ -227,6 +256,7 @@ class _RegistrationState extends State<Registration> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: TextField(
+                  key: const Key('passwordField'),
                   controller: _passwordController,
                   obscureText: !_isPasswordVisible,
                   decoration: InputDecoration(
@@ -269,7 +299,9 @@ class _RegistrationState extends State<Registration> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                            builder: (context) => LoginPage(
+                              firebaseAuth: FirebaseAuth.instance,
+                            ),
                           ),
                         );
                       },
