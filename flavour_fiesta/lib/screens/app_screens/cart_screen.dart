@@ -18,8 +18,8 @@ class _CartScreenState extends State<CartScreen> {
   final _instructionsController = TextEditingController();
   FirebaseAuthServices _authservices = FirebaseAuthServices();
   User? _currentUser;
-  late Stream<QuerySnapshot>
-      userorders; // Declare userorders as a late variable
+  Stream<QuerySnapshot> userorders =
+      Stream.empty(); // Initialize userorders with an empty stream
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _CartScreenState extends State<CartScreen> {
       // Initialize userorders stream inside getCurrentUser
       userorders = FirebaseFirestore.instance
           .collection('Orders')
-          .where('user', isEqualTo: _currentUser!.email)
+          .where('user', isEqualTo: _currentUser?.email ?? '')
           .snapshots();
     });
   }
